@@ -13,7 +13,7 @@ exports.register = async(req,res,next)=>{
 exports.login = async(req,res,next)=>{
     try{
       const {email,password} = req.body;
-      const user =userservice.login(email);
+      const user =userservice.checkuser(email);
       
       if(!user){
         throw new Error('user dont exites');

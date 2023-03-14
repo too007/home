@@ -20,7 +20,7 @@ const userSchema = new Schema({
 
  userSchema.method.comparePassword=async function(userPassword){
     try {
-        const isMatch = await bcrypt.compare(userPassword,this.password)
+        const isMatch = await compare(userPassword,this.password)
         return isMatch;
     } catch (error) {
         
