@@ -15,6 +15,18 @@ const userSchema = new Schema({
         type:String,
         require:true
 
+    },
+    
+});
+
+
+const {Schem} =mongoose;
+
+const userSchem = new Schema({
+   
+    img:{
+        type:String,
+        require:true
     }
 });
 
@@ -26,7 +38,7 @@ const userSchema = new Schema({
         
     }
  }
-
+const us=db.model('us',userSchem);
 const user= db.model('user',userSchema);
-
+module.exports=us;
 module.exports = user;

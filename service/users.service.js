@@ -9,6 +9,7 @@ class userservice{
         throw err;
     }
     }
+  
     static async login(email){
         try{
            return await usermodel({email});

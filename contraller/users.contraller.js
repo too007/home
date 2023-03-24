@@ -10,6 +10,7 @@ exports.register = async(req,res,next)=>{
       res.status(500).json({ message: err.message });
     }
 }
+
 exports.login = async(req,res,next)=>{
     try{
       const {email,password} = req.body;
