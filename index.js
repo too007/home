@@ -1,6 +1,7 @@
 const app =require('./app');
 const db = require('./config/db')
-const usermodel= require('./mode/user.model')
+//const usermodel= require('./mode/user.model')
+const usermodel=require('./models/user.model')
 const port = 3000;
 const multer = require('multer')
 const sharp = require('sharp')
@@ -76,7 +77,7 @@ app.post('/image', upload.single('upload'), async (req, res) => {
     }
 })
 app.use(express.static('public')); 
-app.use('/images', express.static('images'));//take for path
+app.use('/images', express.static('images'));//take for
 
 app.listen(port,()=>{
     console.log('server on port 3000');

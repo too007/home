@@ -1,6 +1,7 @@
 const { json } = require('body-parser');
-const user = require('../mode/user.model');
-const usermodel = require('../mode/user.model')
+//const user = require('../mode/user.model');
+//const usermodel = require('../mode/user.model')
+//const usermodel = require('../models/user.model')
 
 class userservice{
     static async registerUser(email,password){
