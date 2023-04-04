@@ -4,26 +4,40 @@ const usermodel= require('./mode/user.model')
 const port = 3000;
 const multer = require('multer')
 const sharp = require('sharp')
-const express = require('express')
-
+const express = require('express') 
 const { MongoClient } = require('mongodb');
 const { Readable } = require('stream');
 const { GridFSBucket } = require('mongodb');
+const { json } = require('body-parser');
 
 
 
 const upload = multer();
 
-const mongoClient = new MongoClient('mongodb://localhost:27017/data', { useUnifiedTopology: true });
-//await mongoClient.connect();
-const dbs = mongoClient.db('mydatabase');
+
+
 const bucket = new GridFSBucket(db, { bucketName: 'images' });
-app.get('/',(req,res)=>{
-  res.send("hello SAGAR");
+app.get('/',async(req,res)=>{
+  try {
+    const data= await usermodel.find()
+    res.json(data)
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
+
 });
-
+app.get('/images', async (req, res) => {
+    try {
+      const files = await bucket.find().toArray();
+      const fileNames = files.map(file => file.filename);
+      res.json({ files: fileNames });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  });
+  
 app.use(express.json())
-
 //configure multer
 
 const uploads = multer({
@@ -37,6 +51,8 @@ const uploads = multer({
         cb(undefined, true)
     }
 })
+
+
 
 app.post('/image', upload.single('upload'), async (req, res) => {
     try {
@@ -59,6 +75,8 @@ app.post('/image', upload.single('upload'), async (req, res) => {
         res.status(400).send(error)
     }
 })
+app.use(express.static('public')); 
+app.use('/images', express.static('images'));
 
 app.listen(port,()=>{
     console.log('server on port 3000');
