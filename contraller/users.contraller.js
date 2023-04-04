@@ -10,6 +10,14 @@ exports.register = async(req,res,next)=>{
       res.status(500).json({ message: err.message });
     }
 }
+exports.fechdata = async(req,res)=>{
+  try{
+      const getdatas = await userservice.getdata();
+      res.json(getdatas);
+  }catch(err){
+    res.status(500).json({ message: err.message });
+  }
+}
 
 exports.login = async(req,res,next)=>{
     try{
@@ -33,3 +41,4 @@ exports.login = async(req,res,next)=>{
       res.status(500).json({ message: err.message });
     }
 }
+

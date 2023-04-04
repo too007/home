@@ -76,7 +76,7 @@ app.post('/image', upload.single('upload'), async (req, res) => {
     }
 })
 app.use(express.static('public')); 
-app.use('/images', express.static('images'));
+app.use('/images', express.static('images'));//take for path
 
 app.listen(port,()=>{
     console.log('server on port 3000');

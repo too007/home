@@ -24,10 +24,10 @@ const {Schem} =mongoose;
 
 const userSchem = new Schema({
    
-    img:{
-        type:String,
-        require:true
-    }
+    // img:{
+    //     type:String,
+    //     require:true
+    // }
 });
 
  userSchema.method.comparePassword=async function(userPassword){

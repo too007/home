@@ -1,3 +1,5 @@
+const { json } = require('body-parser');
+const user = require('../mode/user.model');
 const usermodel = require('../mode/user.model')
 
 class userservice{
@@ -9,7 +11,15 @@ class userservice{
         throw err;
     }
     }
-  
+    static async getdata(){
+        try{
+            const data = new usermodel();
+            return  await data.find();
+        }catch(err){
+            throw err;
+        }
+
+    }
     static async login(email){
         try{
            return await usermodel({email});
