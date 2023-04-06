@@ -1,16 +1,17 @@
 const app =require('./app');
 const db = require('./config/db')
 //const usermodel= require('./mode/user.model')
-const usermodel=require('./models/user.model')
+const Product=require('./models/user.data')
 const port = 3000;
 const multer = require('multer')
+const bodyParser = require('body-parser')
 const sharp = require('sharp')
 const express = require('express') 
 const { MongoClient } = require('mongodb');
 const { Readable } = require('stream');
 const { GridFSBucket } = require('mongodb');
 const { json } = require('body-parser');
-
+const mongoose = require('mongoose');
 
 
 const upload = multer();
@@ -27,6 +28,10 @@ app.get('/',async(req,res)=>{
   }
 
 });
+
+
+
+
 app.get('/images', async (req, res) => {
     try {
       const files = await bucket.find().toArray();
@@ -68,6 +73,8 @@ app.post('/image', upload.single('upload'), async (req, res) => {
                 .on('finish', resolve)
                 .on('error', reject);
         });
+
+        
         res.status(201).json({status:true})
         
 
@@ -76,8 +83,17 @@ app.post('/image', upload.single('upload'), async (req, res) => {
         res.status(400).send(error)
     }
 })
+app.post('insertdata',async (req,res)=>{
+  try {
+    
+  } catch (error) {
+    
+  }
+
+})
+
 app.use(express.static('public')); 
-app.use('/images', express.static('images'));//take for
+app.use('/images', express.static('images'));
 
 app.listen(port,()=>{
     console.log('server on port 3000');

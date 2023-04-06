@@ -19,16 +19,18 @@ const userSchema = new Schema({
     
 });
 
-
-const {Schem} =mongoose;
-
-const userSchem = new Schema({
-   
-    // img:{
-    //     type:String,
-    //     require:true
-    // }
-});
+const productSchema = new mongoose.Schema({
+    productName: { type: String, required: true },
+    price: { type: Number, required: true },
+    qty: { type: Number, required: true },
+    
+  });
+  
+  const Product = mongoose.model('Product', productSchema);
+  
+  module.exports = Product;
+  
+  
 
  userSchema.method.comparePassword=async function(userPassword){
     try {
@@ -38,7 +40,7 @@ const userSchem = new Schema({
         
     }
  }
-const us=db.model('us',userSchem);
+//const us=db.model('us',userSchem);
 const user= db.model('user',userSchema);
-module.exports=us;
+//module.exports=us;
 module.exports = user;

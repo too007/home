@@ -1,6 +1,7 @@
 const { json } = require('body-parser');
 //const user = require('../mode/user.model');
-//const usermodel = require('../mode/user.model')
+const usermodel = require('../models/user.model')
+
 //const usermodel = require('../models/user.model')
 
 class userservice{
@@ -11,7 +12,7 @@ class userservice{
     }catch(err){
         throw err;
     }
-    }
+    } 
     static async getdata(){
         try{
             const data = new usermodel();
@@ -33,4 +34,16 @@ class userservice{
         return jwt_expire(tokenData,secreatkey,{expireIn:jwt_expire})
     }
 }
+
+class us{
+    static async senddata(productName,price,qty){
+        try{
+            const createuse = new us({productName,price,qty});
+            return  await usermodel.db.save();
+        }catch(err){
+            throw err;
+        }
+        }
+}
+module.exports =us;
 module.exports = userservice;

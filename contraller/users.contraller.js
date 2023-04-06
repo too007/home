@@ -1,5 +1,5 @@
 const userservice = require('../service/users.service')
-
+const us=require('../service/users.service')
 
 exports.register = async(req,res,next)=>{
     try{
@@ -18,7 +18,15 @@ exports.fechdata = async(req,res)=>{
     res.status(500).json({ message: err.message });
   }
 }
+exports.data= async (req,res,next)=>{
+  try{
+    const {productName,price,qty}=req.body;
+        const successRes = await us.senddata(productName,price,qty);
+        res.json({status:true,success:"data save success"});
+  }catch{
 
+  }
+}
 exports.login = async(req,res,next)=>{
     try{
       const {email,password} = req.body;
